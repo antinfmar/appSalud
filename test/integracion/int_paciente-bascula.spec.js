@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 const assert = require('chai').assert;
-const Paciente = require('../../Paciente.js');
-const Bascula = require('../../Bascula.js');
+const {Paciente} = require('../../Paciente.js');
+const {Bascula} = require('../../Bascula.js');
 
 describe('Integration Suite -- Integración Paciente-Bascula',function(){
     describe('Paciente-Bascula - Test Case 1' ,function(){

@@ -1,13 +1,17 @@
-const { Bascula } = require("Bascula.js");
+const { Bascula } = require("./Bascula");
+
 class Paciente {
-    constructor(nombre, apellidos, fechaNacimiento) {
-        this.nombre = nombre;
+
+
+    constructor(nom, apellidos, strFecha) {
+        this.nombre = nom;
         this.apellidos = apellidos;
-        this.fechaNacimiento = fechaNacimiento;
+        this.fechaNacimiento = strFecha;
     }
 
     saludar() {
         return `Hola soy ${this.nombre} ${this.apellidos}`;
+
     }
 
     obtenerNombre() {
@@ -30,39 +34,54 @@ class Paciente {
         return this.fechaNacimiento;
     }
 
-    modificarFechaNacimiento(fecha) {
-        this.fechaNacimiento = fecha;
+    modificarFechaNacimiento(fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     obtenerEdad() {
-        const hoy = new Date();
-        const nacimiento = new Date(this.fechaNacimiento);
-        const edad = hoy.getFullYear() - nacimiento.getFullYear();
 
-        // Ajustar la edad si aún no ha pasado el cumpleaños este año
-        if (hoy.getMonth() < nacimiento.getMonth() || (hoy.getMonth() === nacimiento.getMonth() && hoy.getDate() < nacimiento.getDate())) {
-            return edad - 1;
-        } else {
-            return edad;
+        var fechaES = this.fechaNacimiento.split("/");
+
+        var fechaENG = fechaES[2] + "-" + fechaES[1] + '-' + fechaES[0];
+
+        var today = new Date();
+        var birthDate = new Date(fechaENG);
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
         }
+        return age;
+
+
+
     }
+
 
     modificarBascula(Bascula) {
-        this.bascula = Bascula;
+
+        this.registroBascula = Bascula;
+
     }
+
 
     obtenerBascula() {
-        return this.Bascula;
+        return this.registroBascula;
     }
+
 
     calcularIMC() {
-        if (this.Bascula) {
-            return this.Bascula.calcularIMC();
-        } else {
-            console.log("La báscula no está definida para este paciente.");
-            return null;
+        if (this.registroBascula) 
+        {
+            return this.registroBascula.calcularIMC();
+        } else 
+        {
+            return -1; 
         }
+
     }
+
 }
 
-module.exports={ Paciente };
+
+module.exports = { Paciente }

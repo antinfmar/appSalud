@@ -1,6 +1,7 @@
 const expect = require('chai').expect;
 const assert = require('chai').assert;
-const Paciente = require('../../Paciente.js');
+
+const {Paciente} = require('../../Paciente.js');
 
 describe('Main Suite -- Pruebas Unitarias Paciente',function(){
     var u1=new Paciente('Pedro','Ruiz del Castillo','16/02/1983');

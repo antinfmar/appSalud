@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --experimental-modules test/unitarias --experimental-modules test/integracion"
+    "test": "mocha --experimental-modules test/unitarias --experimental-modules test/integracion",
+    "bascula": "mocha --experimental-modules unitarias/bascula.spec.js",
+    "paciente": "mocha --experimental-modules unitarias/paciente.spec.js"
   },
   "keywords": [
     "javascript",
